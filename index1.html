@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- <title>Makeup Product Image</title> -->
+	<script>
+		function updateColors() {
+			var selectedColors = [];
+			var colorCheckboxes = document.getElementsByName('color');
+			for (var i = 0; i < colorCheckboxes.length; i++) {
+				if (colorCheckboxes[i].checked) {
+					selectedColors.push(colorCheckboxes[i].value);
+				}
+			}
+			document.getElementById('selected-colors').innerHTML = selectedColors.join(', ');
+		}
+	</script>
+</head>
+<body>
+	<h1>Customise Your Touch Up Kit</h1>
+	<img src="/php/product/img/admin-ajax.png" alt="Makeup Product" style="width:auto">
+	<h2>Select Colors:</h2>
+	<form>
+		<input type="checkbox" name="color" value="red" onclick="updateColors()"> Red<br>
+		<input type="checkbox" name="color" value="pink" onclick="updateColors()"> Pink<br>
+		<input type="checkbox" name="color" value="purple" onclick="updateColors()"> Purple<br>
+		<input type="checkbox" name="color" value="blue" onclick="updateColors()"> Blue<br>
+		<input type="checkbox" name="color" value="green" onclick="updateColors()"> Green<br>
+	</form>
+	<p>Selected Colors: <span id="selected-colors"></span></p>
+
+    
+</body>
+</html>
