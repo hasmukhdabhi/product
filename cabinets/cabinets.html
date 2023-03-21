@@ -12,6 +12,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel='stylesheet' id='woo-variation-swatches-css' href='/cabinets/css/frontend.min.css?ver=1673543920'
     type='text/css' media='all' />
+  <link rel='stylesheet' id='woocommerce-general-css' href='/cabinets/assets/css/woocommerce.css?ver=7.2.2'
+    type='text/css' media='all' />
+  <link rel='stylesheet' id='urna-template-css' href='/cabinets/urna/css/template.css?ver=1.0' type='text/css'
+    media='all' />
+  <link rel='stylesheet' id='bootstrap-css' href='/cabinets/urna/css/bootstrap.css?ver=3.3.7' type='text/css'
+    media='all' />
 
 </head>
 
@@ -47,59 +53,45 @@
             <div class="value">DSMN100-W930-II</div>
           </div>
         </div>
-        <table class="variations" cellspacing="0" role="presentation">
-          <tbody>
-            <tr>
-              <th class="label"><label for="door-hinge-location">Door Hinge Location</label><span
-                  class="woo-selected-variation-item-name" data-default=""></span></th>
-              <td class="value woo-variation-items-wrapper">
-                <select style="display:none" id="door-hinge-location" class=" woo-variation-raw-select"
-                  name="attribute_door-hinge-location" data-attribute_name="attribute_door-hinge-location"
-                  data-show_option_none="yes">
-                  <option value="">Choose an option</option>
-                  <option value="left" class="attached enabled">left</option>
-                  <option value="right" class="attached enabled">right</option>
-                </select>
-                <ul role="radiogroup" aria-label="Door Hinge Location"
-                  class="variable-items-wrapper button-variable-items-wrapper wvs-style-squared"
-                  data-attribute_name="attribute_door-hinge-location"
-                  data-attribute_values="[&quot;left&quot;,&quot;right&quot;]">
-                  <li aria-checked="false" tabindex="0" data-wvstooltip="left"
-                    class="variable-item button-variable-item button-variable-item-left" title="left" data-title="left"
-                    data-value="left" role="radio" data-wvstooltip-out-of-stock="">
-                    <div class="variable-item-contents"><span
-                        class="variable-item-span variable-item-span-button">left</span></div>
-                  </li>
-                  <li aria-checked="false" tabindex="0" data-wvstooltip="right"
-                    class="variable-item button-variable-item button-variable-item-right" title="right"
-                    data-title="right" data-value="right" role="radio" data-wvstooltip-out-of-stock="">
-                    <div class="variable-item-contents"><span
-                        class="variable-item-span variable-item-span-button">right</span></div>
-                  </li>
-                </ul><a class="reset_variations" href="#" style="visibility: hidden;">Clear</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
 
-        <button class="button">
-          <span>Add to cart</span>
-          <div class="cart">
-            <svg viewBox="0 0 36 26">
-              <polyline points="1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5"></polyline>
-              <polyline points="15 13.5 17 15.5 22 10.5"></polyline>
-            </svg>
+        <form class="variations_form cart wvs-loaded" action="" method="post" enctype="multipart/form-data">
+
+          <label for="door-hinge-location">Door Hinge Location</label>
+
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary">Left</button>
+            <button type="button" class="btn btn-secondary">Right</button>
           </div>
-        </button>
-        <button class="button">
-          <span>buy Now</span>
-          <div class="cart">
-            <svg viewBox="0 0 36 26">
-              <polyline points="1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5"></polyline>
-              <polyline points="15 13.5 17 15.5 22 10.5"></polyline>
-            </svg>
+
+          <div class="quantity">
+            <div class="number-input">
+              <button onclick="decreaseValue()">-</button>
+              <input type="text" id="number" value="0">
+              <button onclick="increaseValue()">+</button>
+            </div>
+
+            <button class="button">
+              <span>Add to cart</span>
+              <div class="cart">
+                <svg viewBox="0 0 36 26">
+                  <polyline points="1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5"></polyline>
+                  <polyline points="15 13.5 17 15.5 22 10.5"></polyline>
+                </svg>
+              </div>
+            </button>
+            <button class="button">
+              <span>buy Now</span>
+              <div class="cart">
+                <svg viewBox="0 0 36 26">
+                  <polyline points="1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5"></polyline>
+                  <polyline points="15 13.5 17 15.5 22 10.5"></polyline>
+                </svg>
+              </div>
+            </button>
           </div>
-        </button>
+
+
+        </form>
         <div class="product-meta">
           <span class="sku_wrapper">SKU: <span class="sku">N/A</span></span>
         </div>
@@ -139,18 +131,107 @@
         </div>
       </div>
     </div>
+    <ul class="tabs wc-tabs nav nav-tabs" role="tablist">
+      <li class="additional_information_tab active" id="tbay-wc-tab-additional_information" role="tab"
+        aria-controls="tab-additional_information">
+        <a href="#">Additional information</a>
+      </li>
+      <li class="reviews_tab" id="tbay-wc-tab-reviews" role="tab" aria-controls="tab-reviews">
+        <a href="#">Reviews (0)</a>
+      </li>
+      <li class="custom_tab_tab" id="tbay-wc-tab-custom_tab" role="tab" aria-controls="tab-custom_tab">
+        <a href="#">Shipping</a>
+      </li>
+    </ul>
+
+
   </div>
 
-  <script>
-    document.querySelectorAll('.button').forEach(button => button.addEventListener('click', e => {
-      if (!button.classList.contains('loading')) {
-        button.classList.add('loading');
-        setTimeout(() => button.classList.remove('loading'), 3700);
+</body>
+<script>
+  document.querySelectorAll('.button').forEach(button => button.addEventListener('click', e => {
+    if (!button.classList.contains('loading')) {
+      button.classList.add('loading');
+      setTimeout(() => button.classList.remove('loading'), 3700);
+    }
+    e.preventDefault();
+  }));
+
+  // left and right 
+
+  // const btnGroup = document.querySelector('.btn-group');
+  // const buttons = btnGroup.querySelectorAll('button');
+
+  // buttons.forEach(button => {
+  //   button.addEventListener('click', () => {
+  //     console.log(`The ${button.textContent} button was clicked!`);
+  //   });
+  // });
+
+
+  // Get the button element
+  const addProductBtn = document.querySelector('.add-product-btn');
+
+  // Add a click event listener to the button
+  addProductBtn.addEventListener('click', function () {
+    // Your code to add a product goes here
+    console.log('Product added!');
+  });
+
+
+  // click button +,-
+  function decreaseValue() {
+    var value = parseInt(document.getElementById('number').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value--;
+    document.getElementById('number').value = value < 0 ? 0 : value;
+  }
+
+  function increaseValue() {
+    var value = parseInt(document.getElementById('number').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('number').value = value;
+  }
+</script>
+<script>
+  // <![CDATA[  <-- For SVG support
+  if ('WebSocket' in window) {
+    (function () {
+      function refreshCSS() {
+        var sheets = [].slice.call(document.getElementsByTagName("link"));
+        var head = document.getElementsByTagName("head")[0];
+        for (var i = 0; i < sheets.length; ++i) {
+          var elem = sheets[i];
+          var parent = elem.parentElement || head;
+          parent.removeChild(elem);
+          var rel = elem.rel;
+          if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+          }
+          parent.appendChild(elem);
+        }
       }
-      e.preventDefault();
-    }));
-  </script>
-  <!-- <script>
+      var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+      var address = protocol + window.location.host + window.location.pathname + '/ws';
+      var socket = new WebSocket(address);
+      socket.onmessage = function (msg) {
+        if (msg.data == 'reload') window.location.reload();
+        else if (msg.data == 'refreshcss') refreshCSS();
+      };
+      if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+        console.log('Live reload enabled.');
+        sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+      }
+    })();
+  }
+  else {
+    console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+  }
+	// ]]>
+</script>
+<!-- <script>
     // Get the list of swatch items
     const swatchItems = document.querySelectorAll('.iconic-was-swatches__item');
 
@@ -167,6 +248,5 @@
       });
     });
   </script> -->
-</body>
 
 </html>

@@ -19,6 +19,78 @@
      color: red;
  }
 
+ /* quantity */
+
+ /* left and right button */
+ .number-input {
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
+     font-size: 18px;
+     margin-top: 10px;
+     margin-bottom: 10px;
+ }
+
+ .number-input button {
+     background-color: #eee;
+     border: none;
+     color: #555;
+     font-size: 20px;
+     width: 30px;
+     height: 30px;
+     cursor: pointer;
+ }
+
+ .number-input input[type="text"] {
+     font-size: 18px;
+     text-align: center;
+     width: 50px;
+     padding: 5px;
+     border: 1px solid #ddd;
+     border-radius: 3px;
+     margin: 0 10px;
+ }
+
+ .btn-group {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .btn {
+     padding: 10px 20px;
+     background-color: #ccc;
+     border: none;
+     border-radius: 5px;
+     color: #fff;
+     font-size: 16px;
+     cursor: pointer;
+ }
+
+ .btn:hover {
+     background-color: #666;
+ }
+
+ /* Style for the checkbox input */
+ .form-check-input {
+     margin-right: 10px;
+ }
+
+ /* Style for the checkbox label */
+ .form-check-label {
+     font-size: 16px;
+ }
+
+ /* Style for the checked checkbox */
+ .form-check-input:checked {
+     background-color: blue;
+ }
+
+ .quantity {
+     margin-bottom: 10px;
+     margin-right: 10px;
+ }
+
  /* button */
  .button {
      --background: #362a89;
@@ -271,7 +343,7 @@
  } */
 
  /* Variations */
- .product form.cart .variations {
+ /* .product form.cart .variations {
      margin-bottom: 1em;
      border: 0;
      width: 100%;
@@ -302,4 +374,4 @@
  body div.product form.cart .variations td.label .woo-selected-variation-item-name,
  body div.product form.cart .variations th.label .woo-selected-variation-item-name {
      display: none;
- }
+ } */
