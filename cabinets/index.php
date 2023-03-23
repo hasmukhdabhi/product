@@ -34,8 +34,29 @@
   // // Redirect the user to the cart page
   // header('Location: cart.php');
   // exit();
-  
+
+
+  session_start();
+
+  // check if product is already in the cart, if not add to cart
+  if (isset($_SESSION['cart'][$_POST['name']])) {
+    $_SESSION['cart'][$_POST['name']]['quantity'] += $_POST['quantity'];
+  } else {
+    $_SESSION['cart'][$_POST['name']] = array(
+      'name' => $_POST['name'],
+      'price' => $_POST['price'],
+      'image' => $_POST['image'],
+      'quantity' => $_POST['quantity'],
+      'total' => $_POST['price'] * $_POST['quantity']
+    );
+  }
+
+  // redirect to cart page
+  header("Location: cart.php");
+  exit();
   ?>
+
+
 
 
   <div class="container mt-5">
@@ -126,7 +147,7 @@
               <button type="button" onclick="increaseValue()">+</button>
             </div>
 
-            <button type="button" class="button add-to-cart">
+            <button type="button" class="button add-to-cart" name="add_to_cart">
               <span>Add to cart</span>
               <div class="cart">
                 <svg viewBox="0 0 36 26">
