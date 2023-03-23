@@ -19,82 +19,6 @@
      color: red;
  }
 
- /* Navbar enu */
- .navbar {
-     background-color: #fff;
-     /* set background color */
-     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
-     /* add shadow */
- }
-
- .navbar-brand {
-     font-weight: bold;
-     /* make the brand text bold */
- }
-
- .navbar-nav .nav-item .nav-link {
-     color: #333;
-     /* set link color */
-     font-weight: 500;
-     /* set link font weight */
-     padding: 0.5rem 1rem;
-     /* add some padding */
-     margin-left: 30px;
- }
-
- .navbar-nav .nav-item.active .nav-link {
-     color: #007bff;
-     /* set active link color */
- }
-
- .navbar-nav .nav-item .nav-link:hover {
-     color: #555;
-     /* set hover link color */
- }
-
- .dropdown-menu {
-     background-color: #fff;
-     /* set dropdown menu background color */
-     border: none;
-     /* remove border */
-     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-     /* add shadow */
- }
-
- .dropdown-menu a {
-     color: #333;
-     /* set dropdown link color */
-     font-weight: 400;
-     /* set dropdown link font weight */
-     padding: 0.5rem 1rem;
-     /* add some padding */
- }
-
- .dropdown-menu a:hover {
-     background-color: #f2f2f2;
-     /* set dropdown hover background color */
- }
-
- .form-inline .form-control {
-     width: 250px;
-     /* set input width */
-     margin-left: 50px;
- }
-
- .btn-outline-success {
-     color: #28a745;
-     /* set button text color */
-     border-color: #28a745;
-     /* set button border color */
- }
-
- .btn-outline-success:hover {
-     background-color: #28a745;
-     /* set button hover background color */
-     color: #fff;
-     /* set button hover text color */
- }
-
  /* quantity */
 
  /* left and right button */
@@ -411,19 +335,6 @@
      font-size: 15px;
 
  }
-
- /*  legt to right button */
- label {
-     display: inline-block;
-     margin-right: 10px;
- }
-
- #message {
-     margin-top: 10px;
-     font-weight: bold;
-     color: red;
- }
-
 
  /* a {
      color: var(--#{$prefix}link-color);
