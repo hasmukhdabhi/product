@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include('db.php');
+// include('db.php');
 session_start();
+include('db.php');
 ?>
 
 <head>
@@ -56,7 +57,19 @@ session_start();
         <div id="shopping-cart">
 
             <h1>Shopping Cart</h1>
+            <?php
+            // $sql = "INSERT INTO products (name, price, quantity) VALUES ($name,$price,$quantity)";
 
+            // // Execute the query
+            // if (mysqli_query($conn, $sql)) {
+            //     echo "New record inserted successfully";
+            // } else {
+            //     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            // }
+
+            // // Close the database connection
+            // mysqli_close($conn);
+            ?>
             <?php if (empty($_SESSION['cart'])) : ?>
                 <p>Your cart is empty</p>
             <?php else : ?>
@@ -67,21 +80,24 @@ session_start();
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Total</th>
+                        <th>Remove Item</th>
+
                     </tr>
                     <?php foreach ($_SESSION['cart'] as $product) : ?>
                         <tr>
-                            <td><img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" height="50"></td>
-                            <td><?php echo $product['name']; ?></td>
-                            <td><?php echo '$' . $product['price']; ?></td>
-                            <td><?php echo $product['quantity']; ?></td>
-                            <td><?php echo '$' . $product['total']; ?></td>
+                            <td><img src="/product/cabinets/img/1-5.png" alt="<?php echo $product['name'] ?? ''; ?>" height="50"></td>
+                            <td><?php echo $product['name'] ?? ''; ?></td>
+                            <td><?php echo '$' . ($product['price'] ?? ''); ?></td>
+                            <td><?php echo $product['quantity'] ?? ''; ?></td>
+                            <td><?php echo '$' .  ($product['price'] ? (int)$product['price'] : 0) * ($product['quantity'] ? (int)$product['quantity'] : 0); ?></td>
+                            <td><a href="index.php?action=deleted&id=<?php echo $product['product_id'] ?? ''; ?>"><span class="text-danger">Remove Item</span></a></td>
                         </tr>
                     <?php endforeach; ?>
                 </table>
-                <p>Total: <?php echo '$' . array_sum(array_column($_SESSION['cart'], 'total')); ?></p>
+                <!-- <p>Total: <?php echo '$' . array_sum(array_column($_SESSION['cart'], 'total')); ?></p> -->
             <?php endif; ?>
 
-            <p><a href="index.php">Continue shopping</a></p>
+            <p><a href="index.php">Continue Shopping</a></p>
         </div>
     </div>
 </body>

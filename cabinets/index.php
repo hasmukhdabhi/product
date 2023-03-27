@@ -1,3 +1,6 @@
+<?php
+include('db.php')
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,27 +40,42 @@
 
 
   session_start();
-
   // check if product is already in the cart, if not add to cart
-  if (isset($_SESSION['cart'][$_POST['name']])) {
+  if (isset($_SESSION['cart']) && isset($_POST['name']) && isset($_SESSION['cart'][$_POST['name']])) {
     $_SESSION['cart'][$_POST['name']]['quantity'] += $_POST['quantity'];
   } else {
-    $_SESSION['cart'][$_POST['name']] = array(
-      'name' => $_POST['name'],
-      'price' => $_POST['price'],
-      'image' => $_POST['image'],
-      'quantity' => $_POST['quantity'],
-      'total' => $_POST['price'] * $_POST['quantity']
+    $_SESSION['cart'][$_POST['name'] ?? ''] = array(
+      'name' => $_POST['name'] ?? '',
+      'price' => $_POST['price'] ?? '',
+      'image' => $_POST['image'] ?? '',
+      'quantity' => $_POST['quantity'] ?? '',
+      'total' => ($_POST['price'] ?? 0) * ($_POST['quantity'] ?? 0)
     );
   }
 
-  // redirect to cart page
-  header("Location: cart.php");
-  exit();
+  if (isset($_POST['name'])) {
+    header("Location: cart.php");
+    exit();
+  }
+
+  // echo "<pre>";
+  // print_r($_SESSION['cart']);
+  // print_r($_POST);
+  // echo "</pre>";
+
+  if (isset($_GET["action"])) {
+    if ($_GET["action"] = "delete") {
+      foreach ($_SESSION["cart"] as $keys => $product) {
+        if ($product["product_id"] == $_GET["id"]) {
+          unset($_SESSION["cart"][$keys]);
+          echo '<script>alert("product has been Removed.......")</script>';
+          echo '<script>window.location="cart.php"</script>';
+        }
+      }
+    }
+  }
+
   ?>
-
-
-
 
   <div class="container mt-5">
     <!-- navbar menu -->
@@ -106,22 +124,48 @@
             <span class="fa fa-star"></span>
           </div>
         </div>
-        <p class="price"><span class="product-Price-amount amount">
-            <bdi><span class="product-Price-currencySymbol">$</span>100.00</bdi></span> –
-          <span class="product-Price-amount amount"><bdi>
-              <span class="product-Price-currencySymbol">$</span>3,000.00</bdi></span>
-        </p>
-        <div class="woocommerce-product-details__short-description">
-          <div class="product attribute overview">
-            <div class="value">9″ wide, 30.125″ high, 12″ deep (2 shelves)</div>
+        <?php
+        //  print_r($sql);
+        // $name = '';
+        // $price = '';
+        // $image = '';
+        // $quantity = '';
+        // $total = '';
+        // echo "<pre>";
+        // print_r($_POST['add_to_cart']);
+        // echo "</pre>";
+        if (isset($_POST['add_to_cart'])) {
+          $name = $_POST['name'];
+          $price = $_POST['price'];
+          $image = $_POST['image'];
+          $quantity = $_POST['quantity'];
+          $total = $_POST['total'];
+          // print_r($sql);
+          echo $sql = "INSERT INTO products (name, price, image, quantity, total) VALUES ('$name', '$price', '$image', '$quantity', '$total')";
+          exit;
+          $result = mysqli_query($conn, $sql);
+          if ($result) {
+            echo "sucess";
+          } else {
+            die(mysqli_error($conn));
+          }
+        } 
+        ?>
+        <form class="variations_form cart wvs-loaded" action="" method="POST" id="AddToCartForm">
+          <p class="price"><span class="product-Price-amount amount">
+              <bdi><span class="product-Price-currencySymbol">$</span>100.00</bdi></span> –
+            <span class="product-Price-amount amount"><bdi>
+                <span class="product-Price-currencySymbol">$</span>3,000.00</bdi></span>
+          </p>
+          <div class="woocommerce-product-details__short-description">
+            <div class="product attribute overview">
+              <div class="value">9″ wide, 30.125″ high, 12″ deep (2 shelves)</div>
+            </div>
+            <div class="product attribute sku">
+              <div class="value">DSMN100-W930-II</div>
+            </div>
           </div>
-          <div class="product attribute sku">
-            <div class="value">DSMN100-W930-II</div>
-          </div>
-        </div>
 
-        <form class="variations_form cart wvs-loaded" action="cart.php" method="post" enctype="multipart/form-data" id="AddToCartForm">
-          <!-- <input type="hidden" name="product_id" value="1"> -->
           <div>
             <label>
               <input type="radio" name="alignment" value="left" id="left-radio">
@@ -143,11 +187,11 @@
           <div class="quantity">
             <div class="number-input">
               <button type="button" onclick="decreaseValue()">-</button>
-              <input type="text" id="number" value="0">
+              <input type="text" name="quantity" id="number" value="0">
               <button type="button" onclick="increaseValue()">+</button>
             </div>
 
-            <button type="button" class="button add-to-cart" name="add_to_cart">
+            <button type="submit" class="button add-to-cart" name="add_to_cart">
               <span>Add to cart</span>
               <div class="cart">
                 <svg viewBox="0 0 36 26">
@@ -157,7 +201,7 @@
               </div>
             </button>
 
-            <button type="button" class="button buy-now">
+            <button type="submit" class="button buy-now" name="buy_now">
               <span>Buy now</span>
               <div class="cart">
                 <svg viewBox="0 0 36 26">
@@ -167,11 +211,16 @@
               </div>
             </button>
             <input type="hidden" name="add-to-cart" value="1">
+            <input type="hidden" name="price" value="100">
+            <input type="hidden" name="image" value="1">
+            <input type="hidden" name="quantity" value="1">
+            <input type="hidden" name="total" value="1">
+
+            <input type="hidden" name="name" value="W930 – Shaker II Maple Natural Wall Cabinet">
             <input type="hidden" name="product_id" value="1">
             <input type="hidden" name="variation_id" class="variation_id" value="1">
           </div>
         </form>
-
 
         <div class="product-meta">
           <span class="sku_wrapper">SKU: <span class="sku">N/A</span></span>
@@ -258,7 +307,8 @@
   // Add click event listeners to the buttons
   addToCartButton.addEventListener('click', () => {
     // Navigate to the cart page
-    window.location.href = 'cart.php';
+    document.getElementById('AddToCartForm').submit()
+    // window.location.href = 'cart.php';
   });
 
   buyNowButton.addEventListener('click', () => {
